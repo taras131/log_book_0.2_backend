@@ -4,9 +4,8 @@ header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
 header('Access-Control-Allow-Headers: *');
 
-$userId = $_GET['userId'];
-//$userId = "tp_60a156cda72228.69967808";
-$result = mysqli_query($connection, "SELECT * FROM `carslist` WHERE `userId` = '$userId'");
+$carId = $_GET['carId'];
+$result = mysqli_query($connection, "SELECT * FROM `maintenancelist` WHERE `carId` = '$carId'");
 if(!$result){
     echo false;
     exit();

@@ -9,10 +9,11 @@
     $brand = $_POST['brand'];
     $model = $_POST['model'];
     $yearManufacture = $_POST['yearManufacture'];
+    $userId = $_POST['userId'];
     if(!$id) {
       exit();
     }
-    $result = mysqli_query($connection, "INSERT INTO `carslist` (`id`, `brand`, `model`, `yearManufacture`) VALUES('{$id}', '{$brand}', '{$model}', '{$yearManufacture}')");
+    $result = mysqli_query($connection, "INSERT INTO `carslist` (`userId`,`id`, `brand`, `model`, `yearManufacture`) VALUES('{$userId}', '{$id}', '{$brand}', '{$model}', '{$yearManufacture}')");
     var_dump($_POST['method']);
   
     
