@@ -10,11 +10,15 @@
     $model = $_POST['model'];
     $yearManufacture = $_POST['yearManufacture'];
     $userId = $_POST['userId'];
+    $num = $_POST['num'];
     if(!$id) {
       exit();
     }
-    $result = mysqli_query($connection, "INSERT INTO `carslist` (`userId`,`id`, `brand`, `model`, `yearManufacture`) VALUES('{$userId}', '{$id}', '{$brand}', '{$model}', '{$yearManufacture}')");
-    var_dump($_POST['method']);
-  
-    
+    $sql = "INSERT INTO carslist (userId, id, brand, model, yearManufacture, num) VALUES ('$userId','$id', '$brand', '$model', '$yearManufacture', '$num')";
+    if (mysqli_query($connection, $sql)) {
+      echo "New car created successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    mysqli_close($connection);
 ?>

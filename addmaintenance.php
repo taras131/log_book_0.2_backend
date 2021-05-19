@@ -5,14 +5,22 @@
     require_once "./includes/db.php";
  
     $_POST = json_decode(file_get_contents('php://input'), true);
-    $carId = $_POST["carId"];
-    $date= $_POST['date'];
+    $id = $_POST['id'];
+    $carId = $_POST['carId'];
+    $datecommission= $_POST['datecommission'];
     $odometer = $_POST['odometer'];
     $text = $_POST['text'];
-    if(!$carId) {
+    $userId = $_POST['userId'];
+    if(!$id){
       exit();
+      mysqli_close($connection);
     }
-    $result = mysqli_query($connection, "INSERT INTO `maintenancelist` (`carId`,`date`, `odometer`, `text`)
-     VALUES('{$carId}', '{$date}', '{$odometer}', '{text}')");
-    var_dump($_POST['method']);
-?>
+    $sql = "INSERT INTO maintenancelist (id, carId, datecommission, odometer, text, userId) VALUES ('$id', '$carId', '$datecommission', '$odometer', '$text', '$userId')";
+    
+    if (mysqli_query($connection, $sql)) {
+      echo "New record created successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    mysqli_close($connection);
+   ?>

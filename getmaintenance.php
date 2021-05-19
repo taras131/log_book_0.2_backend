@@ -4,16 +4,20 @@ header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
 header('Access-Control-Allow-Headers: *');
 
-$carId = $_GET['carId'];
-$result = mysqli_query($connection, "SELECT * FROM `maintenancelist` WHERE `carId` = '$carId'");
-if(!$result){
-    echo false;
+$userId = $_GET['userId'];
+if(!$userId){
     exit();
-}
-//echo json_encode(mysqli_fetch_assoc($result));
-$array = array();
-while($res = mysqli_fetch_assoc($result)){
-    $array[] = $res;
-}
-echo json_encode($array);
+    mysqli_close($connection);
+  }
+  $sql = "SELECT * FROM `maintenancelist` WHERE `userId` = '$userId'";
+  if ($result = mysqli_query($connection, $sql)) {
+    $array = array();
+    while($res = mysqli_fetch_assoc($result)){
+        $array[] = $res;
+    }
+    echo json_encode($array);
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+  mysqli_close($connection);
 ?>

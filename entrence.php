@@ -14,7 +14,6 @@
         echo "Пользователя не существует";
         exit();
     }
-    
     echo($res['id']);
     $connection->close();
 ?>
