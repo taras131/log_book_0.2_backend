@@ -28,9 +28,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
               echo "Неполные данные";
             }
         break;
-    
+    case 'GET':
+      $userId = $_GET['userId'];
+      $result = mysqli_query($connection, "SELECT * FROM `repairslist` WHERE `userId` = '$userId'");
+      if(!$result){
+        echo false;
+        exit();
+      }
+      $array = array();
+      while ($res = mysqli_fetch_assoc($result)) {
+        $array[] = $res;
+      }
+      echo json_encode($array);
+    break;
     default:
-        # code...
+        exit();
         break;
 }
 ?>
