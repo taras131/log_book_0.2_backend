@@ -11,8 +11,7 @@
     exit();
     mysqli_close($connection);
   }
-
- if(mysqli_query($connection, "DELETE FROM `maintenancelist` WHERE `id`=$id")){
+ if(mysqli_query($connection, "DELETE FROM `noticelist` WHERE `id`=$id")){
    echo "delete record successfully";
    exit(); 
  } else {

@@ -5,9 +5,11 @@
   require_once "./includes/db.php";
   $_POST = json_decode(file_get_contents('php://input'), true);
         $id = $_POST["id"];
-        $result1 = mysqli_query($connection, "DELETE FROM `maintenancelist` WHERE `carId`=$id");
-        $result2 = mysqli_query($connection, "DELETE FROM `repairslist` WHERE `carId`=$id");
-        $result = mysqli_query($connection, "DELETE FROM `carslist` WHERE `id`=$id");
-        echo $result;   
+        if(mysqli_query($connection, "DELETE FROM `repairslist` WHERE `id`=$id")){
+            echo "delete record successfully";
+            exit();  
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
         exit();      
 ?>
