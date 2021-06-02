@@ -11,11 +11,13 @@ $_POST = json_decode(file_get_contents('php://input'), true);
     $yearManufacture = $_POST['yearManufacture'];
     $userId = $_POST['userId'];
     $num = $_POST['num'];
+    $vin = $_POST['vin'];
+    $category = $_POST['category'];
     if(!$id) {
         exit();
     }
 
-    $sql = "INSERT INTO carslist (userId, id, brand, model, yearManufacture, num) VALUES ('$userId','$id', '$brand', '$model', '$yearManufacture', '$num') ON DUPLICATE KEY UPDATE num=VALUES(num), brand=VALUES(brand), model=VALUES(model), yearManufacture=VALUES(yearManufacture)";
+    $sql = "INSERT INTO carslist (userId, id, brand, model, yearManufacture, num, vin, category) VALUES ('$userId','$id', '$brand', '$model', '$yearManufacture', '$num', '$vin', '$category') ON DUPLICATE KEY UPDATE num=VALUES(num),vin=VALUES(vin),category=VALUES(category), brand=VALUES(brand), model=VALUES(model), yearManufacture=VALUES(yearManufacture)";
           if (mysqli_query($connection, $sql)) {
         echo "car update successfully";;
       } else {

@@ -7,6 +7,9 @@
         $id = $_POST["id"];
         $result1 = mysqli_query($connection, "DELETE FROM `maintenancelist` WHERE `carId`=$id");
         $result2 = mysqli_query($connection, "DELETE FROM `repairslist` WHERE `carId`=$id");
+        $result3 = mysqli_query($connection, "DELETE FROM `noticelist` WHERE `carId`=$id");
+        $result4 = mysqli_query($connection, "DELETE FROM `technicalinspectionlist` WHERE `carId`=$id");
+        $result4 = mysqli_query($connection, "DELETE FROM `insurancelist` WHERE `carId`=$id");
         $result = mysqli_query($connection, "DELETE FROM `carslist` WHERE `id`=$id");
         echo $result;   
         exit();      

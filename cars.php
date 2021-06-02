@@ -13,10 +13,12 @@
           $yearManufacture = $_POST['yearManufacture'];
           $userId = $_POST['userId'];
           $num = $_POST['num'];
+          $vin = $_POST['vin'];
+          $category = $_POST['category'];
           if(!$id) {
             exit();
           }
-          $sql = "INSERT INTO carslist (userId, id, brand, model, yearManufacture, num) VALUES ('$userId','$id', '$brand', '$model', '$yearManufacture', '$num')";
+          $sql = "INSERT INTO carslist (userId, id, brand, model, yearManufacture, num, vin, category) VALUES ('$userId','$id', '$brand', '$model', '$yearManufacture', '$num', '$vin', '$category')";
           if (mysqli_query($connection, $sql)) {
             echo "New car created successfully";
           } else {
