@@ -21,3 +21,4 @@ if (mysqli_query($connection, $sql)) {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 exit();
+?>
